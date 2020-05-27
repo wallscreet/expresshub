@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<header class="masthead bg-secondary">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-xs-8 col-xs-10 mx-auto bg-secondary">
+        <div class="site-heading">
+          <h2 class=" site-heading my-4 mt-3 text-white text-align:center"> Post Drafts </h2>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+{% if user.is_authenticated %}
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+          {% for post in post_list %}
+              {% if user.id == post.author.id %}
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <h2 class="card-title">{{ post.title }} | (Draft)</h2>
+                        <p class="card-text text-muted h6">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.createdate}}  </p>
+
+                      <p class="card-text">{{post.body | slice:":200" }}</p>
+                      <a href="{% url 'post_detail' post.pk  %}" class="btn btn-primary">View Draft &rarr;</a>
+                      {% if user.id == post.author.id %}
+                        <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
+                      {% endif %}
+
+                    </div>
+
+                  </div>
+              {% endif %}
+          {% endfor %}
+
+        </div>
+        {% block sidebar %}
+        {% include 'sidebar.html' %}
+        {% endblock sidebar %}
+      </div>
+    </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation conatiner"></nav>
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+      {% endif %}
+    </ul>
+    {% endif %}
+
+{% else %}
+<h2 class=" site-heading my-4 mt-3 text-white text-align:center ">You must be logged in to continue..</h2>
+
+{% endif %}
+{%endblock%}

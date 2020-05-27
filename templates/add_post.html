@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<header class="masthead bg-secondary">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-xs-8 col-xs-10 mx-auto bg-secondary">
+        <div class="site-heading">
+          <h2 class=" site-heading my-4 mt-3 text-white text-align:center"> Add A New Post.. </h2>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+<br/>
+
+{% if user.is_authenticated %}
+
+    <div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Submit</button>
+    </form>
+    </div>
+
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("auth-userid").value=name;
+    </script>
+
+{% else %}
+    <div class="container">
+    <h4>You must be logged in to continue..</h4>
+    </div>
+
+
+{% endif %}
+{% endblock %}
