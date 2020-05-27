@@ -1,1 +1,1 @@
-web: gunicorn RamCoreV2.wsgi
+web: gunicorn RamCoreV3.wsgi
