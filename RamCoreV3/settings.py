@@ -27,7 +27,7 @@ SECRET_KEY = 't6d#2rt$eo=-v-9r8^2i2#izi-!f_ad3f()crvo1@v&er!gr#-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['expresshub.herokuapp.com']
 
 
 # Application definition
