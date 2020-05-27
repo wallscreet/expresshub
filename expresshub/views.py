@@ -10,9 +10,9 @@ def home(request):
 
 
 class UpcomingView(ListView):
-    queryset = Upcoming.objects.filter(status=0).order_by('-startdate')
+    queryset = Upcoming.objects.filter(status=0).order_by('-start_date')
     template_name = 'upcoming.html'
-    paginate_by = 5
+    paginate_by = 10
 
 
 class AddUpcomingView(CreateView):

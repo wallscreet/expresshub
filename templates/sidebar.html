@@ -5,15 +5,15 @@
 <!-- Sidebar Widgets Column -->
 <div class="col-md-4 float-right ">
         <div class="card my-4">
-            <h5 class="card-header">Upcoming Groups & Events</h5>
+            <h5 class="card-header">Welcome to ExpressHub!</h5>
             <div class="card-body">
-            <h5> Feature Coming Soon...</h5>
+            <h5>Help keep our team updated and well informed.  New features will be coming soon!</h5><br/>
                 {% for upcoming in Upcoming %}
                     <p class="card-text"><h6> {{ upcoming.name }} </h6>
                     <small><p class="card-text"> {{ upcoming.start_date }} | </p></small><br/>
                     <a href="#" class="btn btn-danger">Know more!</a><hr>
                 {% endfor %}
-            <a href="#" class="btn btn-danger">Coming Soon</a><hr>
+            <a href="{% url 'add_post' %}" class="btn btn-danger">Add New Note</a><hr>
             </div>
         </div>
 </div>

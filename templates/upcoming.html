@@ -17,7 +17,6 @@
 
 </header>
 
-{% if upcoming_posts %}
 {% if user.is_authenticated %}
 
     <div class="container">
@@ -25,7 +24,7 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
-          {% for Upcoming in Upcoming %}
+          {% for upcoming in upcoming_list %}
           <div class="card mb-4">
             <div class="card-body">
               <h2 class="card-title">{{ upcoming.name }}</h2>
@@ -39,7 +38,6 @@
 
           </div>
           {% endfor %}
-
         </div>
         {% block sidebar %}
         {% include 'sidebar.html' %}
@@ -63,6 +61,5 @@
 <br/>
 <h2 style="text-align:center">You must be logged in to view this page..</h2>
 
-{% endif %}
 {% endif %}
 {%endblock%}

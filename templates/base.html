@@ -35,27 +35,24 @@
           {% if user.is_authenticated %}
 
               <li class="nav-item text-light">
-              <a class="nav-link text-black font-weight-bold" href="{% url 'home' %}">Home</a>
+              <a class="nav-link text-black font-weight-bold" href="{% url 'home' %}">ExpressHub Home</a>
               </li>
 
               <li class="nav-item text-light">
-              <a class="nav-link text-black font-weight-bold" href="{% url 'drafts' %}">My Post Drafts</a>
+              <a class="nav-link text-black font-weight-bold" href="{% url 'add_post' %}">Add New Note</a>
               </li>
 
               <li class="nav-item text-light">
-              <a class="nav-link text-black font-weight-bold" href="{% url 'add_post' %}">Add New Post</a>
+              <a class="nav-link text-black font-weight-bold" href="{% url 'drafts' %}">My Drafts</a>
               </li>
 
-              <li class="nav-item text-light">
-              <a class="nav-link text-black font-weight-bold" href="{% url 'upcoming' %}">Upcoming</a>
-              </li>
-
-              <li class="nav-item text-black">
-              <a class="nav-link text-black font-weight-bold" href="{% url 'logout' %}">Logout</a>
-              </li>
-
-              <li class="nav-item text-light">
-              <a class="nav-link text-black font-weight-bold">Welcome, {{ user.first_name }}!</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link text-black font-weight-bold dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Welcome, {{ user.first_name }}!</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div>
               </li>
 
           {% else %}

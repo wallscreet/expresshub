@@ -9,7 +9,7 @@
     <div class="row">
       <div class=" col-xs-8 col-xs-10 mx-auto bg-secondary">
         <div class="site-heading">
-          <h2 class=" site-heading my-4 mt-3 text-white text-align:center"> Post Drafts </h2>
+          <h2 class=" site-heading my-4 mt-3 text-white text-align:center"> ExpressHub Drafts - {{ user.first_name }} {{ user.last_name }} </h2>
           </p>
         </div>
       </div>
@@ -25,6 +25,7 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
+          {% if post in post_list %}
           {% for post in post_list %}
               {% if user.id == post.author.id %}
                   <div class="card mb-4">
@@ -43,6 +44,18 @@
                   </div>
               {% endif %}
           {% endfor %}
+          {% else %}
+            <div class="card mb-4">
+                    <div class="card-body">
+                      <h2 class="card-title">You Do Not Have Any Notes Saved As A Draft</h2>
+                        <p class="card-text text-muted h6">Would you like to create a new ExpressHub Note?</p>
+
+                      <p class="card-text"></p>
+                      <a href="{% url 'add_post' %}" class="btn btn-secondary">Add New Note &rarr;</a>
+
+                    </div>
+            </div>
+          {% endif %}
 
         </div>
         {% block sidebar %}

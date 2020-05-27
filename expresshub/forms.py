@@ -49,7 +49,7 @@ class DateInput(forms.DateInput):
 class AddUpcomingForm(forms.ModelForm):
     class Meta:
         model = Upcoming
-        fields = ('name', 'author', 'start_date', 'end_date', 'num_rooms', 'details')
+        fields = ('name', 'author', 'start_date', 'end_date', 'num_rooms', 'status', 'details')
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
@@ -57,7 +57,7 @@ class AddUpcomingForm(forms.ModelForm):
             'start_date': DateInput(attrs={'class': 'form-control'}),
             'end_date': DateInput(attrs={'class': 'form-control'}),
             'num_rooms': forms.TextInput(attrs={'class': 'form-control'}),
-            'details': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please provide details..'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
+            'details': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please provide details..'}),
 
         }
