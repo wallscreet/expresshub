@@ -9,7 +9,7 @@
     <div class="row">
       <div class=" col-xs-8 col-xs-10 mx-auto bg-secondary">
         <div class="site-heading">
-          <h2 class=" site-heading my-4 mt-3 text-white text-align:center ">ExpressHub Hotel Notes</h2>
+          <h2 class=" site-heading my-4 mt-3 text-white text-align:center ">ExpressHub Housekeeping Notes</h2>
         </div>
       </div>
     </div>
@@ -24,23 +24,23 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
-          {% for post in post_list %}
+          {% for posth in posth_list %}
               <div class="card mb-4">
                 <div class="card-body">
-                  <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-text text-muted h6"><a href="{% url 'author' post.author.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a>
-                        | {{ post.updatedate}} |
-                     {% with post.comments.count as total_comments %}
-                        {{ total_comments }} comments
+                  <h2 class="card-title">{{ posth.titleh }}</h2>
+                    <p class="card-text text-muted h6"><a href="{% url 'authorh' posth.authorh.id %}">{{ posth.authorh.first_name }} {{ posth.authorh.last_name }}</a>
+                        | {{ posth.updatedateh}} |
+                     {% with posth.hcomments.count as total_hcomments %}
+                        {{ total_hcomments }} comments
                      {% endwith %} </p>
 
-                  <p class="card-text">{{post.body | slice:":200" }}</p>
-                  <a href="{% url 'post_detail' post.pk  %}" class="btn btn-primary">Read More &rarr;</a>
-                  {% if user.id == post.author.id %}
-                    {% if post.status == 0 %}
-                        <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
+                  <p class="card-text">{{posth.bodyh | slice:":200" }}</p>
+                  <a href="{% url 'posth_detail' posth.pk  %}" class="btn btn-primary">Read More &rarr;</a>
+                  {% if user.id == posth.authorh.id %}
+                    {% if posth.statush == 0 or posth.statush == 1%}
+                        <a href="{% url 'edit_posth' posth.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
                     {% endif %}
-                {% endif %}
+                  {% endif %}
                 </div>
 
               </div>

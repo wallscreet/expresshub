@@ -8,7 +8,7 @@
     <div class="row">
       <div class=" col-xs-8 col-xs-10 mx-auto bg-secondary">
         <div class="site-heading">
-          <h2 class=" site-heading my-4 mt-3 text-white text-align:center "> Posts By: {{ author }} </h2>
+          <h2 class=" site-heading my-4 mt-3 text-white text-align:center "> Posts By: {{ authorh }} </h2>
         </div>
       </div>
     </div>
@@ -16,7 +16,7 @@
 
 </header>
 
-{% if author_posts %}
+{% if authorh_posts %}
     {% if user.is_authenticated %}
 
         <div class="container">
@@ -24,15 +24,15 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8 mt-3 left">
-              {% for post in author_posts %}
+              {% for posth in authorh_posts %}
               <div class="card mb-4">
                 <div class="card-body">
-                  <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-text text-muted h6">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.createdate}}
-                        <small><a href="{% url 'edit_post' post.pk %}">(Edit)</a></small> </p>
+                  <h2 class="card-title">{{ posth.titleh }}</h2>
+                    <p class="card-text text-muted h6">{{ posth.authorh.first_name }} {{ posth.authorh.last_name }} | {{ posth.createdateh}}
+                        <small><a href="{% url 'edit_posth' posth.pk %}">(Edit)</a></small> </p>
 
-                  <p class="card-text">{{post.body | slice:":200" }}</p>
-                  <a href="{% url 'post_detail' post.pk  %}" class="btn btn-primary">Read More &rarr;</a> <a href="{% url 'home' %}" class="btn btn-primary">Go Home &rarr;</a>
+                  <p class="card-text">{{posth.bodyh | slice:":200" }}</p>
+                  <a href="{% url 'posth_detail' posth.pk  %}" class="btn btn-primary">Read More &rarr;</a> <a href="{% url 'housekeeping' %}" class="btn btn-primary">Back to Housekeeping &rarr;</a>
                 </div>
 
               </div>

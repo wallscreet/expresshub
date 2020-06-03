@@ -8,15 +8,16 @@
       <div class="row">
         <div class="col-md-8 card mb-4  mt-3 left  top">
           <div class="card-body">
-            <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
-              <p class=" text-muted"><a href="{% url 'author' post.author.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a> | {{ post.updatedate }}</p>
-            <p class="card-text ">{{ post.body | safe }}</p>
+            <h1>{% block title %} {{ postm.titlem }} {% endblock title %}</h1>
+              <p class=" text-muted"><a href="{% url 'authorm' postm.authorm.id %}">{{ postm.authorm.first_name }} {{ postm.authorm.last_name }}</a> | {{ postm.updatedatem }}</p>
+            <p class="card-text ">{{ postm.bodym | safe }}</p>
             <hr>
-            <a href="{% url 'home' %}" class="btn btn-primary">Go Home &rarr;</a>
-            {% if user.id == post.author.id %}
-                {% if post.status == 0 %}
-                    <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
+            <a href="{% url 'maintenance' %}" class="btn btn-primary">Back to Maintenance &rarr;</a>
+            {% if user.id == postm.authorm.id or user.id == 1 or user.id == 3 or user.id == 5 %}
+                {% if postm.statusm == 0 or postm.statusm == 1 %}
+                    <a href="{% url 'edit_postm' postm.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
                 {% endif %}
+            <a href="{% url 'home' %}" class="btn btn-primary">Go Home &rarr;</a>
             {% endif %}
           </div>
         </div>
@@ -26,21 +27,21 @@
         <div class="col-md-8 card mb-4  mt-3 ">
           <div class="card-body">
             <!-- comments -->
-            {% with comments.count as total_comments %}
-            <h2>{{ total_comments }} comments</h2>
+            {% with mcomments.count as total_mcomments %}
+            <h2>{{ total_mcomments }} comments</h2>
 
             <p>
-              {% endwith %} {% for comment in comments %}
+              {% endwith %} {% for mcomment in mcomments %}
             </p>
 
             <div class="comments" style="padding: 10px;">
               <p class="font-weight-bold">
-                {{ comment.author.first_name }} {{ comment.author.last_name }} |
+                {{ mcomment.mauthor.first_name }} {{ mcomment.mauthor.last_name }} |
                 <span class=" text-muted font-weight-normal">
-                  {{ comment.createdate }}
+                  {{ mcomment.mcreatedate }}
                 </span>
               </p>
-              {{ comment.body | linebreaks }}
+              {{ mcomment.mbody | linebreaks }}
             <hr>
             </div>
 
@@ -49,14 +50,14 @@
         </div>
         <div class="col-md-8 card mb-4  mt-3 ">
           <div class="card-body">
-            {% if new_comment %}
+            {% if new_mcomment %}
             <div class="alert alert-success" role="alert">
               Your Comment Was Posted Successfully!
             </div>
             {% else %}
             <h3>Leave a comment</h3>
             <form method="post" style="margin-top: 1.3em;">
-              {{ comment_form | crispy }}
+              {{ mcomment_form | crispy }}
               {% csrf_token %}
               <hr>
               <button type="submit" class="btn btn-secondary btn-lg">Submit</button>

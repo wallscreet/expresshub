@@ -1,6 +1,6 @@
 from bootstrap_datepicker_plus import DatePickerInput
 from django import forms
-from .models import Post, Comment, Upcoming
+from .models import Post, Comment, Upcoming, PostM, PostH, MComment, HComment
 
 
 class PostForm(forms.ModelForm):
@@ -59,5 +59,83 @@ class AddUpcomingForm(forms.ModelForm):
             'num_rooms': forms.TextInput(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             'details': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please provide details..'}),
+
+        }
+
+
+class PostMForm(forms.ModelForm):
+    class Meta:
+        model = PostM
+        fields = ('titlem', 'authorm', 'statusm', 'bodym')
+
+        widgets = {
+            'titlem': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
+            'authorm': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'auth-userid', 'type': 'hidden'}),
+            'statusm': forms.Select(attrs={'class': 'form-control'}),
+            'bodym': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What would you like to say?'}),
+
+        }
+
+
+class PostMEditForm(forms.ModelForm):
+    class Meta:
+        model = PostM
+        fields = ('titlem', 'statusm', 'bodym')
+
+        widgets = {
+            'titlem': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
+            'statusm': forms.Select(attrs={'class': 'form-control'}),
+            'bodym': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What would you like to say?'}),
+
+        }
+
+
+class MCommentForm(forms.ModelForm):
+    class Meta:
+        model = MComment
+        fields = ('mauthor', 'mbody')
+
+        widgets = {
+            'mauthor': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'auth-userid', 'type': 'hidden'}),
+            'mbody': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please leave your comment here!'}),
+
+        }
+
+
+class PostHForm(forms.ModelForm):
+    class Meta:
+        model = PostH
+        fields = ('titleh', 'authorh', 'statush', 'bodyh')
+
+        widgets = {
+            'titleh': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
+            'authorh': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'auth-userid', 'type': 'hidden'}),
+            'statush': forms.Select(attrs={'class': 'form-control'}),
+            'bodyh': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What would you like to say?'}),
+
+        }
+
+
+class PostHEditForm(forms.ModelForm):
+    class Meta:
+        model = PostH
+        fields = ('titleh', 'statush', 'bodyh')
+
+        widgets = {
+            'titleh': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
+            'statush': forms.Select(attrs={'class': 'form-control'}),
+            'bodyh': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What would you like to say?'}),
+
+        }
+
+
+class HCommentForm(forms.ModelForm):
+    class Meta:
+        model = HComment
+        fields = ('hauthor', 'hbody')
+
+        widgets = {
+            'hauthor': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'auth-userid', 'type': 'hidden'}),
+            'hbody': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please leave your comment here!'}),
 
         }
