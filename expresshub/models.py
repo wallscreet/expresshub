@@ -135,7 +135,7 @@ class LostFound(models.Model):
 
 
 class LFComment(models.Model):
-    lostfound = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="lfcomments")
+    lostfound = models.ForeignKey(LostFound, on_delete=models.CASCADE, related_name="lfcomments")
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     createdate = models.DateTimeField(auto_now_add=True)

@@ -28,7 +28,7 @@
               <div class="card mb-4">
                 <div class="card-body">
                   <h2 class="card-title">{{ lostfound.item }}</h2>
-                    <p class="card-text text-muted h6"><a href="{% url 'creator' lostfound.creator.id %}">{{ lostfound.creator.first_name }} {{ lostfound.creator.last_name }}</a>
+                    <p class="card-text text-muted h6">{{ lostfound.creator.first_name }} {{ lostfound.creator.last_name }}
                         | {{ lostfound.updatedate}} |
                      {% with lostfound.lfcomments.count as total_lfcomments %}
                         {{ total_lfcomments }} comments

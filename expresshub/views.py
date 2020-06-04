@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post, Upcoming, PostM, PostH, LostFound, LFComment
-from .forms import PostForm, PostEditForm, CommentForm, AddUpcomingForm, PostMForm, PostHForm, PostMEditForm, PostHEditForm, HCommentForm, MCommentForm, PostM, PostH, LostFoundForm, LostFoundEditForm, LFCommentForm
+from .forms import PostForm, PostEditForm, CommentForm, AddUpcomingForm, PostMForm, PostHForm, PostMEditForm, PostHEditForm, HCommentForm, MCommentForm, PostM, PostH, LostFoundForm, LostFound,  LostFoundEditForm, LFCommentForm
 
 '''
 def home(request):
@@ -244,7 +244,7 @@ def posth_detail(request, pk):
 
 def lostfound_detail(request, pk):
     template_name = 'lostfound_detail.html'
-    posth = get_object_or_404(LostFound, pk=pk)
+    lostfound = get_object_or_404(LostFound, pk=pk)
     lfcomments = lostfound.lfcomments.order_by('-createdate')
     new_lfcomment = None
     # Comment posted
@@ -255,7 +255,7 @@ def lostfound_detail(request, pk):
             # Create Comment object but don't save to database yet
             new_lfcomment = lfcomment_form.save(commit=False)
             # Assign the current post to the comment
-            new_lfcomment.lostfound = posth
+            new_lfcomment.lostfound = lostfound
             # Save the comment to the database
             new_lfcomment.save()
     else:
