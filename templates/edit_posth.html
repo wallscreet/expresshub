@@ -21,7 +21,7 @@
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p | safe }}
-                <button class="btn btn-secondary">Submit</button>
+                <button class="btn btn-secondary">Submit &rarr;</button> <a href="{% url 'housekeeping' %}" class="btn btn-secondary">Back to Housekeeping &rarr;</a>
             </form>
             </div>
 {% else %}
