@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Post, Upcoming, PostM, PostH
-from .forms import PostForm, PostEditForm, CommentForm, AddUpcomingForm, PostMForm, PostHForm, PostMEditForm, PostHEditForm, HCommentForm, MCommentForm, PostM, PostH
+from .models import Post, Upcoming, PostM, PostH, LostFound, LFComment
+from .forms import PostForm, PostEditForm, CommentForm, AddUpcomingForm, PostMForm, PostHForm, PostMEditForm, PostHEditForm, HCommentForm, MCommentForm, PostM, PostH, LostFoundForm, LostFoundEditForm, LFCommentForm
 
 '''
 def home(request):
@@ -39,6 +39,20 @@ class HousekeepingView(ListView):
     queryset = PostH.objects.exclude(statush=3).order_by('-createdateh')
     # model = Post
     template_name = 'housekeeping.html'
+    paginate_by = 10
+
+
+class LostFoundView(ListView):
+    queryset = LostFound.objects.filter(status=0).order_by('-createdate')
+    # model = LostFound
+    template_name = 'lostfound.html'
+    paginate_by = 10
+
+
+class FoundView(ListView):
+    queryset = LostFound.objects.filter(status=1).order_by('-createdate')
+    # model = LostFound
+    template_name = 'found.html'
     paginate_by = 10
 
 
@@ -85,6 +99,21 @@ class EditPostMView(UpdateView):
     # fields = ['titlem', 'bodym', 'statusm']
 
 
+class AddLostFoundView(CreateView):
+    model = LostFound
+    form_class = LostFoundForm
+    template_name = 'add_lostfound.html'
+    # fields = '__all__'
+    # fields = ('item', 'creator', 'description')
+
+
+class EditLostFoundView(UpdateView):
+    model = LostFound
+    form_class = LostFoundEditForm
+    template_name = 'edit_lostfound.html'
+    # fields = ['item', 'description', 'status']
+
+
 class AddPostHView(CreateView):
     model = PostH
     form_class = PostHForm
@@ -108,6 +137,11 @@ def authorview(request, author):
 def authormview(request, authorm):
     authorm_posts = PostM.objects.filter(authorm=authorm)
     return render(request, 'authorm.html', {'authorm': authorm, 'authorm_posts': authorm_posts})
+
+
+def creatorview(request, creator):
+    creator_posts = LostFound.objects.filter(creator=creator)
+    return render(request, 'creator.html', {'creator': creator, 'creator_posts': creator_posts})
 
 
 def authorhview(request, authorh):
@@ -204,5 +238,36 @@ def posth_detail(request, pk):
             "hcomments": hcomments,
             "new_hcomment": new_hcomment,
             "hcomment_form": hcomment_form,
+        },
+    )
+
+
+def lostfound_detail(request, pk):
+    template_name = 'lostfound_detail.html'
+    posth = get_object_or_404(LostFound, pk=pk)
+    lfcomments = lostfound.lfcomments.order_by('-createdate')
+    new_lfcomment = None
+    # Comment posted
+    if request.method == 'POST':
+        lfcomment_form = LFCommentForm(data=request.POST)
+        if lfcomment_form.is_valid():
+
+            # Create Comment object but don't save to database yet
+            new_lfcomment = lfcomment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_lfcomment.lostfound = posth
+            # Save the comment to the database
+            new_lfcomment.save()
+    else:
+        lfcomment_form = LFCommentForm()
+
+    return render(
+        request,
+        template_name,
+        {
+            "lostfound": lostfound,
+            "lfcomments": lfcomments,
+            "new_lfcomment": new_lfcomment,
+            "lfcomment_form": lfcomment_form,
         },
     )

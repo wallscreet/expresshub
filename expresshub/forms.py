@@ -1,6 +1,6 @@
 from bootstrap_datepicker_plus import DatePickerInput
 from django import forms
-from .models import Post, Comment, Upcoming, PostM, PostH, MComment, HComment
+from .models import Post, Comment, Upcoming, PostM, PostH, MComment, HComment, LostFound, LFComment
 
 
 class PostForm(forms.ModelForm):
@@ -98,6 +98,45 @@ class MCommentForm(forms.ModelForm):
         widgets = {
             'mauthor': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'auth-userid', 'type': 'hidden'}),
             'mbody': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please leave your comment here!'}),
+
+        }
+
+
+class LostFoundForm(forms.ModelForm):
+    class Meta:
+        model = LostFound
+        fields = ('item', 'creator', 'status', 'description')
+
+        widgets = {
+            'item': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Item'}),
+            'creator': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'creator-userid', 'type': 'hidden'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please describe what was found...'}),
+
+        }
+
+
+class LostFoundEditForm(forms.ModelForm):
+    class Meta:
+        model = LostFound
+        fields = ('item', 'status', 'description')
+
+        widgets = {
+            'item': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Item'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please describe what was found...'}),
+
+        }
+
+
+class LFCommentForm(forms.ModelForm):
+    class Meta:
+        model = LFComment
+        fields = ('creator', 'body')
+
+        widgets = {
+            'creator': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'creator-userid', 'type': 'hidden'}),
+            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please leave your comment here!'}),
 
         }
 

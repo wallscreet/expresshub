@@ -65,6 +65,17 @@
               </li>
 
               <li class="nav-item dropdown">
+                <a class="nav-link text-black font-weight-bold dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Lost & Found</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'lostfound' %}">View Lost Items</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'add_lostfound' %}">New Lost Item</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'found' %}">View Found Items</a>
+                </div>
+              </li>
+
+              <li class="nav-item dropdown">
                 <a class="nav-link text-black font-weight-bold dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Welcome, {{ user.first_name }}!</a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>

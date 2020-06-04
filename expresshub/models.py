@@ -10,6 +10,8 @@ STATUSH = ((0, 'Pending'), (1, 'In Process'), (2, 'Completed'))
 
 UPSTAT = ((0, 'Upcoming'), (1, 'Completed'))
 
+LOSTFOUND = ((0, 'Lost'), (1, 'Found'))
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -114,3 +116,32 @@ class HComment(models.Model):
 
     def __str__(self):
         return "Comment {} by {}".format(self.hbody, self.hauthor)
+
+
+class LostFound(models.Model):
+    item = models.CharField(max_length=255)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField()
+    createdate = models.DateTimeField(auto_now_add=True)
+    updatedate = models.DateTimeField(auto_now=True)
+    status = models.IntegerField(choices=LOSTFOUND, default=0)
+
+    def __str__(self):
+        return self.item + ' | ' + str(self.creator)
+
+    def get_absolute_url(self):
+        # return reverse('post_detail', args=(str(self.id)))
+        return reverse('lostfound')
+
+
+class LFComment(models.Model):
+    lostfound = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="lfcomments")
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    body = models.TextField()
+    createdate = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-createdate"]
+
+    def __str__(self):
+        return "Comment {} by {}".format(self.body, self.creator)

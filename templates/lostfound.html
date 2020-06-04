@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<header class="masthead bg-secondary">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-xs-8 col-xs-10 mx-auto bg-secondary">
+        <div class="site-heading">
+          <h2 class=" site-heading my-4 mt-3 text-white text-align:center ">ExpressHub Lost & Found Bin</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+{% if user.is_authenticated %}
+
+    <div class="container">
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+          {% for lostfound in lostfound_list %}
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h2 class="card-title">{{ lostfound.item }}</h2>
+                    <p class="card-text text-muted h6">{{ lostfound.creator.first_name }} {{ lostfound.creator.last_name }}
+                        | {{ lostfound.updatedate}} |
+                     {% with lostfound.lfcomments.count as total_lfcomments %}
+                        {{ total_lfcomments }} comments
+                     {% endwith %} </p>
+
+                  <p class="card-text">{{lostfound.description | slice:":200" }}</p>
+                  <a href="{% url 'lostfound_detail' lostfound.pk %}" class="btn btn-primary">Read More &rarr;</a>
+                  <a href="{% url 'edit_lostfound' lostfound.pk %}" class="btn btn-primary">Edit Item &rarr;</a>
+                </div>
+
+              </div>
+          {% endfor %}
+        </div>
+        {% block sidebar %}
+        {% include 'sidebar.html' %}
+        {% endblock sidebar %}
+      </div>
+    </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation conatiner"></nav>
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+      {% endif %}
+    </ul>
+    {% endif %}
+
+{% else %}
+<br/>
+<h2 style="text-align:center">You must be logged in to view this page..</h2>
+
+{% endif %}
+{%endblock%}
