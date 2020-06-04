@@ -10,7 +10,8 @@
           <div class="card-body">
             <h1>{% block title %} {{ postm.titlem }} {% endblock title %}</h1>
               <p class=" text-muted"><a href="{% url 'authorm' postm.authorm.id %}">{{ postm.authorm.first_name }} {{ postm.authorm.last_name }}</a> | {{ postm.updatedatem }}</p>
-            <p class="card-text ">{{ postm.bodym | safe }}</p>
+            <hr>
+              <p class="card-text ">{{ postm.bodym | safe }}</p><br/>
             <hr>
             <a href="{% url 'maintenance' %}" class="btn btn-primary">Back to Maintenance &rarr;</a>
             {% if user.id == postm.authorm.id or user.id == 1 or user.id == 3 or user.id == 5 %}

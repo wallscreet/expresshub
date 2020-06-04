@@ -33,10 +33,10 @@
                      {% with post.comments.count as total_comments %}
                         {{ total_comments }} comments
                      {% endwith %} </p>
-
-                  <p class="card-text">{{post.body | slice:":200" }}</p>
+                  <hr>
+                  <p class="card-text">{{post.body | slice:":200" | safe }}</p><br/><hr>
                   <a href="{% url 'post_detail' post.pk  %}" class="btn btn-primary">Read More &rarr;</a>
-                  {% if user.id == post.author.id %}
+                    {% if user.id == post.author.id %}
                     {% if post.status == 0 %}
                         <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
                     {% endif %}

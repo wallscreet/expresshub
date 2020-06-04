@@ -21,7 +21,7 @@
             <div class="container">
             <form method="POST">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form.as_p | safe }}
                 <button class="btn btn-secondary">Submit</button>
             </form>
             </div>

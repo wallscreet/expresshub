@@ -33,8 +33,8 @@
                      {% with lostfound.lfcomments.count as total_lfcomments %}
                         {{ total_lfcomments }} comments
                      {% endwith %} </p>
-
-                  <p class="card-text">{{lostfound.description | slice:":200" }}</p>
+                  <hr>
+                  <p class="card-text">{{lostfound.description | slice:":200" | safe }}</p><br/><hr>
                   <a href="{% url 'lostfound_detail' lostfound.pk %}" class="btn btn-primary">Read More &rarr;</a>
                   <a href="{% url 'edit_lostfound' lostfound.pk %}" class="btn btn-primary">Edit Item &rarr;</a>
                 </div>

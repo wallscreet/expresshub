@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'bootstrap4',
     'bootstrap_datepicker_plus',
+    'django_summernote'
 ]
 
 MIDDLEWARE = [
@@ -76,6 +77,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'RamCoreV3.wsgi.application'
+
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 # Database

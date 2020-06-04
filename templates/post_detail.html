@@ -10,14 +10,15 @@
           <div class="card-body">
             <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
               <p class=" text-muted"><a href="{% url 'author' post.author.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a> | {{ post.updatedate }}</p>
-            <p class="card-text ">{{ post.body | safe }}</p>
-            <hr>
-            <a href="{% url 'home' %}" class="btn btn-primary">Go Home &rarr;</a>
-            {% if user.id == post.author.id %}
-                {% if post.status == 0 %}
-                    <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
+              <hr>
+              <p class="card-text ">{{ post.body | safe }}</p><br/>
+              <hr>
+              <a href="{% url 'home' %}" class="btn btn-primary">Go Home &rarr;</a>
+                {% if user.id == post.author.id %}
+                    {% if post.status == 0 %}
+                        <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
           </div>
         </div>
 
