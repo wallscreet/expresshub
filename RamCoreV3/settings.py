@@ -45,8 +45,11 @@ INSTALLED_APPS = [
     'crispy_forms',
     'bootstrap4',
     'bootstrap_datepicker_plus',
-    'django_summernote',
 ]
+
+
+INSTALLED_APPS += ('django_summernote', )
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
