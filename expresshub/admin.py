@@ -7,8 +7,7 @@ class PostAdmin(SummernoteModelAdmin):
     summernote_fields = ('body',)
 
 
-admin.site.register(PostAdmin)
-admin.site.register(Post)
+admin.site.register(Post, PostAdmin)
 admin.site.register(Comment)
 admin.site.register(Upcoming)
 admin.site.register(PostM)
