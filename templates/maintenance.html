@@ -36,7 +36,7 @@
                   <hr>
                   <p class="card-text">{{postm.bodym | slice:":200" | safe }}</p><br/><hr>
                   <a href="{% url 'postm_detail' postm.pk %}" class="btn btn-primary">Read More &rarr;</a>
-                  {% if user.id == 1 or user.id == 5 or user.id == 3 or user.id == postm.authorm.id %}
+                  {% if user.id == 1 or user.id == 5 or user.id == 3 or user.id == 2 or user.id == postm.authorm.id %}
                     {% if postm.statusm == 0 or postm.statusm == 1 %}
                         <a href="{% url 'edit_postm' postm.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
                     {% endif %}
