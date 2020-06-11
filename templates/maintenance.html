@@ -32,7 +32,7 @@
                         | {{ postm.updatedatem}} |
                      {% with postm.mcomments.count as total_mcomments %}
                         {{ total_mcomments }} comments
-                     {% endwith %} </p>
+                     {% endwith %} | Status: {{ postm.statusm }} </p>
                   <hr>
                   <p class="card-text">{{postm.bodym | slice:":200" | safe }}</p><br/><hr>
                   <a href="{% url 'postm_detail' postm.pk %}" class="btn btn-primary">Read More &rarr;</a>
