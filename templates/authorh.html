@@ -31,7 +31,7 @@
                     <p class="card-text text-muted h6">{{ posth.authorh.first_name }} {{ posth.authorh.last_name }} | {{ posth.createdateh}}
                         <small><a href="{% url 'edit_posth' posth.pk %}">(Edit)</a></small> </p>
                   <hr>
-                  <p class="card-text">{{posth.bodyh | slice:":200" | safe }}</p><br/><hr>
+                  <p class="card-text">{{posth.bodyh|slice:":200"|safe }}</p><br/><hr>
                   <a href="{% url 'posth_detail' posth.pk  %}" class="btn btn-primary">Read More &rarr;</a> <a href="{% url 'housekeeping' %}" class="btn btn-primary">Back to Housekeeping &rarr;</a>
                 </div>
 

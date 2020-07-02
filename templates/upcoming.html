@@ -30,7 +30,7 @@
               <h2 class="card-title">{{ upcoming.name }}</h2>
                 <p class="card-text text-muted h6"> From: {{ upcoming.start_date}} To: {{ upcoming.end_date }} | Number Rooms: {{ num_rooms }}</p>
 
-              <p class="card-text">{{upcoming.details | slice:":50" }}</p>
+              <p class="card-text">{{upcoming.detailS|slice:":50"|safe }}</p>
               <a href="{% url 'upcoming' upcoming.pk  %}" class="btn btn-primary">Read More &rarr;</a>
               {% if user.id == post.author.id %}
             {% endif %}

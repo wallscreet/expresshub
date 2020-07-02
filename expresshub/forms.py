@@ -1,7 +1,7 @@
 from bootstrap_datepicker_plus import DatePickerInput
 from django import forms
 from .models import Post, Comment, Upcoming, PostM, PostH, MComment, HComment, LostFound, LFComment
-from django_summernote.widgets import SummernoteWidget
+from ckeditor.fields import RichTextField
 
 
 class PostForm(forms.ModelForm):
@@ -14,7 +14,7 @@ class PostForm(forms.ModelForm):
             'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'auth-userid', 'type': 'hidden'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             # 'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What would you like to say?'}),
-            'body': SummernoteWidget(),
+            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Post Details Here'}),
         }
 
 
@@ -27,7 +27,7 @@ class PostEditForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             # 'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What would you like to say?'}),
-            'body': SummernoteWidget()
+            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Post Details Here'})
         }
 
 
@@ -74,7 +74,7 @@ class PostMForm(forms.ModelForm):
             'authorm': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'auth-userid', 'type': 'hidden'}),
             'statusm': forms.Select(attrs={'class': 'form-control'}),
             # 'bodym': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What would you like to say?'}),
-            'bodym': SummernoteWidget()
+            'bodym': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Post Details Here'})
         }
 
 
@@ -87,7 +87,7 @@ class PostMEditForm(forms.ModelForm):
             'titlem': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
             'statusm': forms.Select(attrs={'class': 'form-control'}),
             # 'bodym': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What would you like to say?'}),
-            'bodym': SummernoteWidget()
+            'bodym': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Post Details Here'})
         }
 
 
@@ -113,7 +113,7 @@ class LostFoundForm(forms.ModelForm):
             'creator': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'creator-userid', 'type': 'hidden'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             # 'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please describe what was found...'}),
-            'description': SummernoteWidget()
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Post Details Here'})
         }
 
 
@@ -126,7 +126,7 @@ class LostFoundEditForm(forms.ModelForm):
             'item': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Item'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             # 'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please describe what was found...'}),
-            'description': SummernoteWidget()
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Post Details Here'})
         }
 
 
@@ -152,7 +152,7 @@ class PostHForm(forms.ModelForm):
             'authorh': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'auth-userid', 'type': 'hidden'}),
             'statush': forms.Select(attrs={'class': 'form-control'}),
             # 'bodyh': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What would you like to say?'}),
-            'bodyh': SummernoteWidget()
+            'bodyh': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Post Details Here'})
         }
 
 
@@ -165,7 +165,7 @@ class PostHEditForm(forms.ModelForm):
             'titleh': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
             'statush': forms.Select(attrs={'class': 'form-control'}),
             # 'bodyh': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What would you like to say?'}),
-            'bodyh': SummernoteWidget()
+            'bodyh': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Post Details Here'})
         }
 
 

@@ -1,15 +1,18 @@
-from django.contrib import admin
 from django.urls import path
-from . import views
-from .views import HomeView, post_detail, AddPostView, EditPostView, DraftView, authorview, UpcomingView, AddUpcomingView, postm_detail, posth_detail, AddPostMView, AddPostHView, EditPostHView, EditPostMView, MaintenanceView, HousekeepingView, authorhview, authormview, lostfound_detail, LostFoundView, AddLostFoundView, EditLostFoundView, FoundView, creatorview
+from .views import HomeView, post_detail, AddPostView, EditPostView, DraftView, authorview, UpcomingView, \
+    AddUpcomingView, postm_detail, posth_detail, AddPostMView, AddPostHView, EditPostHView, EditPostMView, \
+    MaintenanceView, HousekeepingView, authorhview, authormview, lostfound_detail, LostFoundView, AddLostFoundView, \
+    EditLostFoundView, FoundView, creatorview, ClaimedView
+
 
 urlpatterns = [
     # path('', views.home, name='home')
     path('', HomeView.as_view(), name='home'),
     path('maintenance/', MaintenanceView.as_view(), name='maintenance'),
     path('housekeeping/', HousekeepingView.as_view(), name='housekeeping'),
-    path('lostfound/', LostFoundView.as_view(), name='lostfound'),\
+    path('lostfound/', LostFoundView.as_view(), name='lostfound'),
     path('found/', FoundView.as_view(), name='found'),
+    path('claimed/', ClaimedView.as_view(), name='claimed'),
     path('post/<str:pk>/', post_detail, name='post_detail'),
     path('lostfound/<str:pk>/', lostfound_detail, name='lostfound_detail'),
     path('add_post/', AddPostView.as_view(), name='add_post'),

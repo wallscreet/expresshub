@@ -31,7 +31,7 @@
                     <p class="card-text text-muted h6">{{ postm.authorm.first_name }} {{ postm.authorm.last_name }} | {{ postm.createdatem}}
                         <small><a href="{% url 'edit_postm' postm.pk %}">(Edit)</a></small> </p>
                   <hr>
-                  <p class="card-text">{{postm.bodym | slice:":200" | safe }}</p><br/><hr>
+                  <p class="card-text">{{postm.bodym|slice:":200"|safe }}</p><br/><hr>
                   <a href="{% url 'postm_detail' postm.pk  %}" class="btn btn-primary">Read More &rarr;</a> <a href="{% url 'maintenance' %}" class="btn btn-primary">Back to Maintenance &rarr;</a>
                 </div>
 

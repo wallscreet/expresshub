@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post, Upcoming, PostM, PostH, LostFound, LFComment
-from .forms import PostForm, PostEditForm, CommentForm, AddUpcomingForm, PostMForm, PostHForm, PostMEditForm, PostHEditForm, HCommentForm, MCommentForm, PostM, PostH, LostFoundForm, LostFound,  LostFoundEditForm, LFCommentForm
+from .forms import PostForm, PostEditForm, CommentForm, AddUpcomingForm, PostMForm, PostHForm, PostMEditForm, \
+    PostHEditForm, HCommentForm, MCommentForm, PostM, PostH, LostFoundForm, LostFound,  LostFoundEditForm, LFCommentForm
 
 '''
 def home(request):
@@ -53,6 +54,13 @@ class FoundView(ListView):
     queryset = LostFound.objects.filter(status=1).order_by('-createdate')
     # model = LostFound
     template_name = 'found.html'
+    paginate_by = 10
+
+
+class ClaimedView(ListView):
+    queryset = LostFound.objects.filter(status=2).order_by('-createdate')
+    # model = LostFound
+    template_name = 'claimed.html'
     paginate_by = 10
 
 

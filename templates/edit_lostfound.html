@@ -20,7 +20,8 @@
         <div class="container">
         <form method="POST">
             {% csrf_token %}
-            {{ form.as_p | safe }}
+            {{ form.media }}
+            {{ form.as_p }}
             <button class="btn btn-secondary">Submit &rarr;</button> <a href="{% url 'lostfound' %}" class="btn btn-secondary">Back to Lost & Found &rarr;</a>
         </form>
         </div>

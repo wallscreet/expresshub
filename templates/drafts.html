@@ -32,7 +32,7 @@
                       <h2 class="card-title">{{ post.title }} | (Draft)</h2>
                         <p class="card-text text-muted h6">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.createdate}}  </p>
                       <hr>
-                      <p class="card-text">{{post.body | slice:":200" | safe }}</p><br/><hr>
+                      <p class="card-text">{{post.body|slice:":200"|safe }}</p><br/><hr>
                       <a href="{% url 'post_detail' post.pk  %}" class="btn btn-primary">View Draft &rarr;</a>
                       {% if user.id == post.author.id %}
                         <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit Post &rarr;</a>

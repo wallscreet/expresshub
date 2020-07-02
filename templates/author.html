@@ -31,7 +31,7 @@
                     <p class="card-text text-muted h6">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.createdate}}
                         <small><a href="{% url 'edit_post' post.pk %}">(Edit)</a></small> </p>
                   <hr>
-                  <p class="card-text">{{post.body | slice:":200" }}</p><br/><hr>
+                  <p class="card-text">{{post.body|slice:":200"|safe }}</p><br/><hr>
                   <a href="{% url 'post_detail' post.pk  %}" class="btn btn-primary">Read More &rarr;</a> <a href="{% url 'home' %}" class="btn btn-primary">Go Home &rarr;</a>
                 </div>
 

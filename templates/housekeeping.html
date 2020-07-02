@@ -34,7 +34,7 @@
                         {{ total_hcomments }} comments
                      {% endwith %} </p>
                   <hr>
-                  <p class="card-text">{{posth.bodyh | slice:":200" | safe }}</p><br/><hr>
+                  <p class="card-text">{{posth.bodyh|slice:":200"|safe }}</p><br/><hr>
                   <a href="{% url 'posth_detail' posth.pk  %}" class="btn btn-primary">Read More &rarr;</a>
                   {% if user.id == posth.authorh.id %}
                     {% if posth.statush == 0 or posth.statush == 1%}

@@ -11,7 +11,7 @@
             <h1>{% block title %} {{ lostfound.item }} {% endblock title %}</h1>
               <p class=" text-muted">{{ lostfound.creator.first_name }} {{ lostfound.creator.last_name }} | {{ lostfound.updatedate }}</p>
               <hr>
-              <p class="card-text ">{{ lostfound.description | safe }}</p><br/>
+              <p class="card-text ">{{ lostfound.description|safe }}</p><br/>
               <hr>
               <a href="{% url 'lostfound' %}" class="btn btn-primary">Back to Lost & Found &rarr;</a>
               <a href="{% url 'edit_lostfound' lostfound.pk %}" class="btn btn-primary">Edit Item &rarr;</a>

@@ -11,7 +11,7 @@
             <h1>{% block title %} {{ posth.titleh }} {% endblock title %}</h1>
               <p class=" text-muted"><a href="{% url 'authorh' posth.authorh.id %}">{{ posth.authorh.first_name }} {{ posth.authorh.last_name }}</a> | {{ posth.updatedateh }}</p>
               <hr>
-              <p class="card-text ">{{ posth.bodyh | safe }}</p><br/>
+              <p class="card-text ">{{ posth.bodyh|safe }}</p><br/>
               <hr>
               <a href="{% url 'housekeeping' %}" class="btn btn-primary">Back to Housekeeping &rarr;</a>
                 {% if user.id == posth.authorh.id or user.id == 1 %}

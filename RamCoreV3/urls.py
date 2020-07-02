@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from django_summernote.urls import urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,6 +28,6 @@ urlpatterns = [
     path('employees/', include('django.contrib.auth.urls')),
     path('employees/', include('Employees.urls')),
     path('', include('expresshub.urls')),
-    path('summernote/', include('django_summernote.urls')),
+
 
 ]
