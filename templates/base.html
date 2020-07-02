@@ -49,18 +49,22 @@
               <li class="nav-item dropdown">
                 <a class="nav-link text-black font-weight-bold dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Maintenance</a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'maintenance' %}">View Notes</a>
+                  <a class="dropdown-item" href="{% url 'add_postm' %}">Add New Request</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'add_postm' %}">New Request</a>
+                  <a class="dropdown-item" href="{% url 'maintenance' %}">Pending Requests</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'maintenancecomp' %}">Completed Requests</a>
                 </div>
               </li>
 
               <li class="nav-item dropdown">
                 <a class="nav-link text-black font-weight-bold dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Housekeeping</a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'housekeeping' %}">View Notes</a>
+                  <a class="dropdown-item" href="{% url 'add_posth' %}">Add New Request</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'add_posth' %}">New Request</a>
+                  <a class="dropdown-item" href="{% url 'housekeeping' %}">Pending Requests</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'housekeepingcomp' %}">Completed Requests</a>
                 </div>
               </li>
 

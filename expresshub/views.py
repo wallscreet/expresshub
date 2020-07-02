@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Post, Upcoming, PostM, PostH, LostFound, LFComment
+from django.views.generic import ListView, CreateView, UpdateView
 from .forms import PostForm, PostEditForm, CommentForm, AddUpcomingForm, PostMForm, PostHForm, PostMEditForm, \
-    PostHEditForm, HCommentForm, MCommentForm, PostM, PostH, LostFoundForm, LostFound,  LostFoundEditForm, LFCommentForm
+    PostHEditForm, HCommentForm, MCommentForm, PostM, PostH, LostFoundForm, LostFound, LostFoundEditForm, LFCommentForm
+from .models import Post, Upcoming
 
 '''
 def home(request):
@@ -30,16 +30,30 @@ class HomeView(ListView):
 
 
 class MaintenanceView(ListView):
-    queryset = PostM.objects.exclude(statusm=3).order_by('-createdatem')
+    queryset = PostM.objects.exclude(statusm=2).order_by('-createdatem')
     # model = Post
     template_name = 'maintenance.html'
     paginate_by = 10
 
 
+class MaintenanceCompleteView(ListView):
+    queryset = PostM.objects.filter(statusm=2).order_by('-createdatem')
+    # model = Post
+    template_name = 'maintenancecomp.html'
+    paginate_by = 10
+
+
 class HousekeepingView(ListView):
-    queryset = PostH.objects.exclude(statush=3).order_by('-createdateh')
+    queryset = PostH.objects.exclude(statush=2).order_by('-createdateh')
     # model = Post
     template_name = 'housekeeping.html'
+    paginate_by = 10
+
+
+class HousekeepingCompleteView(ListView):
+    queryset = PostH.objects.filter(statush=2).order_by('-createdateh')
+    # model = Post
+    template_name = 'housekeepingcomp.html'
     paginate_by = 10
 
 

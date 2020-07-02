@@ -9,7 +9,7 @@
     <div class="row">
       <div class=" col-xs-8 col-xs-10 mx-auto bg-secondary">
         <div class="site-heading">
-          <h2 class=" site-heading my-4 mt-3 text-white text-align:center ">Active Housekeeping Requests</h2>
+          <h2 class=" site-heading my-4 mt-3 text-white text-align:center ">Completed Housekeeping Requests</h2>
         </div>
       </div>
     </div>
@@ -27,12 +27,12 @@
           {% for posth in posth_list %}
               <div class="card mb-4">
                 <div class="card-body">
-                  <h2 class="card-title">{{ posth.titleh }}</h2>
+                  <h2 class="card-title">{{ posth.titleh }}<small> - (COMPLETED)</small></h2>
                     <p class="card-text text-muted h6"><a href="{% url 'authorh' posth.authorh.id %}">{{ posth.authorh.first_name }} {{ posth.authorh.last_name }}</a>
                         | {{ posth.updatedateh}} |
                      {% with posth.hcomments.count as total_hcomments %}
                         {{ total_hcomments }} comments
-                     {% endwith %} | Status: {{ posth.get_statush_display }}</p>
+                     {% endwith %} | Status: {{ posth.get_statush_display }} </p>
                   <hr>
                   <p class="card-text">{{posth.bodyh|slice:":200"|safe }}</p><br/><hr>
                   <a href="{% url 'posth_detail' posth.pk  %}" class="btn btn-primary">Read More &rarr;</a>

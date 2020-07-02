@@ -1,9 +1,8 @@
 {% block sidebar %}
 
 
-
-<!-- Sidebar Widgets Column -->
-<div class="col-md-4 float-right ">
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4 mt-0 float-right">
         <div class="card my-4">
             <h5 class="card-header">Welcome to ExpressHub!</h5>
             <div class="card-body">
@@ -14,17 +13,19 @@
                     <a href="#" class="btn btn-danger">Know more!</a><hr>
                 {% endfor %}
             <a href="{% url 'add_post' %}" class="btn btn-danger">Add New Note</a><hr>
-                <h4><span class="badge badge-secondary">Updates from the Admin <span class="badge badge-light">2</span></span></h4>
+                <h4><span class="badge badge-secondary">Updates from the Admin <span class="badge badge-light">5</span></span></h4>
                     <h6>July 2, 2020:<br/>
-                        &rarr; Claimed Items Archive for Lost/Found<br/>
-                        &rarr; Rich Text Editor Maintenance</h6>
+                        &diamond;Claimed Items Archive<br/>
+                        &diamond;Rich Text Editor Maintenance<br/>
+                        &diamond;Maintenance & Housekeeping:<br/>
+                        &rarr;New Request & Completed Pages<br/></h6>
                     <hr>
                 <h4><span class="badge badge-secondary">Updates from the Admin <span class="badge badge-light">2</span></span></h4>
                     <h6>June 10, 2020:<br/>
-                        &rarr; Permissions For Maintenance Edit<br/>
-                        &rarr; Added Status To Maintenance View</h6>
-                    </div><hr>
+                        &diamond; Permissions For Maintenance Edit<br/>
+                        &diamond; Added Status To Maintenance View</h6>
+            <hr></div>
         </div>
-</div>
+    </div>
 
 {% endblock sidebar %}

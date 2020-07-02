@@ -2,14 +2,16 @@ from django.urls import path
 from .views import HomeView, post_detail, AddPostView, EditPostView, DraftView, authorview, UpcomingView, \
     AddUpcomingView, postm_detail, posth_detail, AddPostMView, AddPostHView, EditPostHView, EditPostMView, \
     MaintenanceView, HousekeepingView, authorhview, authormview, lostfound_detail, LostFoundView, AddLostFoundView, \
-    EditLostFoundView, FoundView, creatorview, ClaimedView
+    EditLostFoundView, FoundView, creatorview, ClaimedView, MaintenanceCompleteView, HousekeepingCompleteView
 
 
 urlpatterns = [
     # path('', views.home, name='home')
     path('', HomeView.as_view(), name='home'),
     path('maintenance/', MaintenanceView.as_view(), name='maintenance'),
+    path('maintenancecomp/', MaintenanceCompleteView.as_view(), name='maintenancecomp'),
     path('housekeeping/', HousekeepingView.as_view(), name='housekeeping'),
+    path('housekeepingcomp/', HousekeepingCompleteView.as_view(), name='housekeepingcomp'),
     path('lostfound/', LostFoundView.as_view(), name='lostfound'),
     path('found/', FoundView.as_view(), name='found'),
     path('claimed/', ClaimedView.as_view(), name='claimed'),

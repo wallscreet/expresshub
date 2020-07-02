@@ -6,20 +6,21 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 left  top">
+        <div class="col-md-8 card mb-4 mt-3 left top">
           <div class="card-body">
             <h1>{% block title %} {{ postm.titlem }} {% endblock title %}</h1>
               <p class=" text-muted"><a href="{% url 'authorm' postm.authorm.id %}">{{ postm.authorm.first_name }} {{ postm.authorm.last_name }}</a> | {{ postm.updatedatem }}</p>
             <hr>
               <p class="card-text ">{{ postm.bodym|safe }}</p><br/>
             <hr>
-            <a href="{% url 'maintenance' %}" class="btn btn-primary">Back to Maintenance &rarr;</a>
-            {% if user.id == postm.authorm.id or user.id == 1 or user.id == 3 or user.id == 5 %}
-                {% if postm.statusm == 0 or postm.statusm == 1 %}
-                    <a href="{% url 'edit_postm' postm.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
+                {% if user.id == postm.authorm.id or user.id == 1 or user.id == 3 or user.id == 5 %}
+                    {% if postm.statusm == 0 or postm.statusm == 1 %}
+                        <a href="{% url 'edit_postm' postm.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
+                    {% endif %}
                 {% endif %}
+            <a href="{% url 'maintenance' %}" class="btn btn-primary">Pending Requests &rarr;</a>
+            <a href="{% url 'maintenancecomp' %}" class="btn btn-primary">Completed Requests &rarr;</a>
             <a href="{% url 'home' %}" class="btn btn-primary">Go Home &rarr;</a>
-            {% endif %}
           </div>
         </div>
 
@@ -56,10 +57,11 @@
               Your Comment Was Posted Successfully!
             </div>
             {% else %}
-            <h3>Leave a comment</h3>
-            <form method="post" style="margin-top: 1.3em;">
-              {{ mcomment_form | crispy }}
+            <h3>Leave A Comment:</h3>
+            <form method="POST">
               {% csrf_token %}
+              {{ form.media }}
+              {{ mcomment_form.as_p }}
               <hr>
               <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
             </form>

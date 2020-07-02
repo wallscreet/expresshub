@@ -98,8 +98,8 @@ class MCommentForm(forms.ModelForm):
 
         widgets = {
             'mauthor': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'auth-userid', 'type': 'hidden'}),
-            'mbody': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please leave your comment here!'}),
-
+            # 'mbody': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please leave your comment here!'}),
+            'mbody': RichTextField(blank=True, null=True),
         }
 
 
