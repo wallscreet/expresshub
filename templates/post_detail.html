@@ -19,6 +19,12 @@
                         <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary">Edit Post &rarr;</a>
                     {% endif %}
                 {% endif %}
+          <br/><br/><hr><br/>
+          <form action="{% url 'user_viewed' post.pk %}"
+                method="POST">
+              {%  csrf_token %}
+              <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger btn-sm">Viewed</button>
+          </form>
           </div>
         </div>
 

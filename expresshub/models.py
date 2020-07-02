@@ -13,6 +13,8 @@ UPSTAT = ((0, 'Upcoming'), (1, 'Completed'))
 
 LOSTFOUND = ((0, 'Lost'), (1, 'Found'), (2, 'Claimed'))
 
+DEPARTMENT = ((0, 'Operations'), (1, 'Sales'), (2, 'Maintenance'), (3, 'Housekeeping'))
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -21,6 +23,7 @@ class Post(models.Model):
     createdate = models.DateTimeField(auto_now_add=True)
     updatedate = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS)
+    views = models.ManyToManyField(User, related_name='user_viewed')
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
@@ -146,3 +149,15 @@ class LFComment(models.Model):
 
     def __str__(self):
         return "Comment {} by {}".format(self.body, self.creator)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    position = models.CharField(max_length=100)
+    department = models.IntegerField(choices=DEPARTMENT)
+    start_date = models.DateField(auto_now_add=False)
+    profile_pic = models.ImageField(null=True, blank=True, upload_to="static/Images")
+
+    def __str__(self):
+        return str(self.user)
+

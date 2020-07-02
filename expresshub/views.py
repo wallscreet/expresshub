@@ -3,11 +3,18 @@ from django.views.generic import ListView, CreateView, UpdateView
 from .forms import PostForm, PostEditForm, CommentForm, AddUpcomingForm, PostMForm, PostHForm, PostMEditForm, \
     PostHEditForm, HCommentForm, MCommentForm, PostM, PostH, LostFoundForm, LostFound, LostFoundEditForm, LFCommentForm
 from .models import Post, Upcoming
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 '''
 def home(request):
     return render(request, 'home.html', {})
 '''
+
+def UserViewed(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.views.add(request.user)
+    return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
 
 
 class UpcomingView(ListView):

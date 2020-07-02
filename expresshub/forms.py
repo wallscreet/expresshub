@@ -179,3 +179,4 @@ class HCommentForm(forms.ModelForm):
             'hbody': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Please leave your comment here!'}),
 
         }
+

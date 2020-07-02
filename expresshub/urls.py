@@ -2,7 +2,7 @@ from django.urls import path
 from .views import HomeView, post_detail, AddPostView, EditPostView, DraftView, authorview, UpcomingView, \
     AddUpcomingView, postm_detail, posth_detail, AddPostMView, AddPostHView, EditPostHView, EditPostMView, \
     MaintenanceView, HousekeepingView, authorhview, authormview, lostfound_detail, LostFoundView, AddLostFoundView, \
-    EditLostFoundView, FoundView, creatorview, ClaimedView, MaintenanceCompleteView, HousekeepingCompleteView
+    EditLostFoundView, FoundView, creatorview, ClaimedView, MaintenanceCompleteView, HousekeepingCompleteView, UserViewed
 
 
 urlpatterns = [
@@ -34,4 +34,5 @@ urlpatterns = [
     path('posth/<str:pk>/', posth_detail, name='posth_detail'),
     path('add_posth/', AddPostHView.as_view(), name='add_posth'),
     path('posth/edit/<int:pk>', EditPostHView.as_view(), name='edit_posth'),
+    path('viewed/<int:pk>', UserViewed, name='user_viewed'),
 ]
